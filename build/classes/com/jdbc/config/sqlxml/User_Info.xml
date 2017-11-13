@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="User_Info">
+
+  <resultMap type="com.jdbc.bean.User_Info" id="User_Info">
+    <id column="user_id" jdbcType="INTEGER" property="user_id"/>
+    <result column="user_name" jdbcType="VARCHAR" property="user_name"/>
+    <result column="user_password" jdbcType="VARCHAR" property="user_password"/>
+    <result column="administrator" jdbcType="BOOLEAN" property="administrator"/>
+    <collection property="addressList" resultMap="Address.Addr"/>
+  </resultMap>
+  
+  <select id="selectUser_InfoList"  parameterType="com.jdbc.bean.user" resultMap="User_Info">
+    	select a.user_id,a.user_name,a.user_password,b.address_id,b.address,b.age 
+    	from user_info a left join address b 
+    	on a.user_id=b.user_id
+    	<where>
+   		    <if test="user_name!=null and !&quot;&quot;.equals(user_name.trim())">
+   			 and user_name like &quot;%&quot;#{user_name}&quot;%&quot;
+   		    </if>
+    	</where>
+  </select>
+  
+</mapper>

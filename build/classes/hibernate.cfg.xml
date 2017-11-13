@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    
+    <session-factory>
+       
+        <!-- 显示SQL语句 -->
+		<property name="show_sql">true</property>
+	    <!-- 数据库驱动 -->
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<!-- 数据库URL -->
+		<property name="hibernate.connection.url">jdbc:mysql:///zuoye?useUnicode=true&amp;characterEncoding=UTF-8</property>
+		<!-- 访问数据库用户名 -->
+		<property name="hibernate.connection.username">root</property>
+		<!-- 访问数据库密码 -->
+		<property name="hibernate.connection.password">000123</property>
+		<!-- 数据库方言-->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+		<!-- 自动创建表-->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<!-- 开启线程安全 -->
+		<property name="hibernate.current_session_context_class">thread</property>
+		<!-- 引入查询语句配置文件 -->
+		<mapping resource="com/one/domian/Query.xml"/>
+		<!-- 引入对应持久化类的配置文件 -->
+		<mapping resource="com/one/domian/user.hbm.xml"/>
+		
+    </session-factory>
+    
+</hibernate-configuration>
